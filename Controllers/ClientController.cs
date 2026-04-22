@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace resting_dotnet
 {
@@ -7,11 +8,11 @@ namespace resting_dotnet
     [ApiController]
     public class ClientController : ControllerBase
     {
-        [HttpPost]
-        public async Task<IActionResult> CreateClient([FromBody] Models.Client client)
+        private readonly Context.ClientDbContext _context;
+
+        public ClientController(Context.ClientDbContext context)
         {
-            
-            return Ok(client);
+            _context = context;
         }
     }
 }
